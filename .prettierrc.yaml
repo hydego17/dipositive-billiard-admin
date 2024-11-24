@@ -1,0 +1,7 @@
+singleQuote: true
+jsxSingleQuote: true
+jsxBracketSameLine: false
+arrowParens: always
+semi: false
+printWidth: 100
+trailingComma: es5

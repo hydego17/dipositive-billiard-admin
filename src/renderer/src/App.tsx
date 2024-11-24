@@ -1,4 +1,4 @@
-import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom"
+import { Navigate, RouterProvider, createHashRouter } from "react-router-dom"
 
 import { DayJsProvider } from "@/lib/dayjs"
 import { RootLayout } from "@/components/layout/root-layout"
@@ -6,7 +6,7 @@ import { RootLayout } from "@/components/layout/root-layout"
 import DashboardPage from "@/pages/dashboard/dashboard"
 import TransactionPage from "@/pages/transaction/transaction"
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     element: <RootLayout />,
     children: [

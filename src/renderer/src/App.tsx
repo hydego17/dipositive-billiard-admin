@@ -1,34 +1,36 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
+import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom"
 
-function App(): JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
+import { DayJsProvider } from "@/lib/dayjs"
+import { RootLayout } from "@/components/layout/root-layout"
 
+import DashboardPage from "@/pages/dashboard/dashboard"
+import TransactionPage from "@/pages/transaction/transaction"
+
+const router = createBrowserRouter([
+  {
+    element: <RootLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Navigate to='/dashboard' replace />,
+      },
+      {
+        path: "/dashboard",
+        element: <DashboardPage />,
+      },
+      {
+        path: "/transaction",
+        element: <TransactionPage />,
+      },
+    ],
+  },
+])
+
+function App() {
   return (
-    <>
-      <img alt="logo" className="logo" src={electronLogo} />
-      <div className="creator">Powered by electron-vite</div>
-      <div className="text">
-        Build an Electron app with <span className="react">React</span>
-        &nbsp;and <span className="ts">TypeScript</span>
-      </div>
-      <p className="tip">
-        Please try pressing <code>F12</code> to open the devTool
-      </p>
-      <div className="actions">
-        <div className="action">
-          <a href="https://electron-vite.org/" target="_blank" rel="noreferrer">
-            Documentation
-          </a>
-        </div>
-        <div className="action">
-          <a target="_blank" rel="noreferrer" onClick={ipcHandle}>
-            Send IPC
-          </a>
-        </div>
-      </div>
-      <Versions></Versions>
-    </>
+    <DayJsProvider>
+      <RouterProvider router={router} />
+    </DayJsProvider>
   )
 }
 
